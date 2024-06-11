@@ -15,7 +15,7 @@ function App() {
     <>
       <Header />
       <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
-      <SearchResults />
+      <SearchResults searchTerm={searchTerm}/>
     </>
   )
 }
