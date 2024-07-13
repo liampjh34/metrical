@@ -16,18 +16,18 @@ export default function SearchBar({searchTerm, setSearchTerm}) {
     }
 
 
-   return  <Form onSubmit={handleSubmit}>
-        <Form.Label htmlFor="searchInput">Search a poet:</Form.Label>
-        <Form.Control 
+   return  <form onSubmit={handleSubmit}>
+        <input
+            aria-label="Search a poet" 
             value={searchInput}
             onChange={handleChange}
             id="searchInput"
             placeholder="Poet's name"
-        ></Form.Control>
-        <Button 
+        ></input>
+        <button 
             variant="primary" 
             size="lg"
             type="submit"
-        >Search</Button>{' '}
-    </Form>
+        >Search</button>{' '}
+    </form>
 }

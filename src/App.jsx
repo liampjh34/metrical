@@ -6,6 +6,7 @@ import Header from './Components/Header'
 import SearchBar from './Components/SearchBar'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SearchResults from './Components/SearchResults'
+import LandingView from './Views/LandingView'
 
 function App() {
 
@@ -13,9 +14,7 @@ function App() {
 
   return (
     <>
-      <Header />
-      <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
-      <SearchResults searchTerm={searchTerm}/>
+      <LandingView/>
     </>
   )
 }
