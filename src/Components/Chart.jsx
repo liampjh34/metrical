@@ -19,7 +19,6 @@ export default function WordsChart({ words }) {
     original.compute('root')
     
     const roots = original.json()[0].terms.map((word) => {
-      console.log(word)
         return word.root || word.normal
     })
 
@@ -30,8 +29,6 @@ export default function WordsChart({ words }) {
         prev[nxt] = (prev[nxt] + 1) || 1;
         return prev;
     }, {})
-
-    console.log(wordCounts)
 
     ChartJS.register(
         CategoryScale,
@@ -66,7 +63,8 @@ export default function WordsChart({ words }) {
         ]
       }
 
-    
+    console.log(data)
+
     return <Bar
         options={options} data={data}
     />

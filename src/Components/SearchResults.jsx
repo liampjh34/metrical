@@ -1,5 +1,5 @@
 import Poem from './Poem'
-import axios from 'axios'
+import getPoem from '../api/api'
 import { useEffect, useState } from 'react'
 import WordsChart from './Chart'
 
@@ -11,12 +11,12 @@ export default function SearchResults({ searchTerm }) {
     let poetsWords = []
     
     useEffect(() => {
-        if (searchTerm !== '') {
-            const path = `https://poetrydb.org/author,random/${searchTerm};1`
-            axios.get(path)
-            .then(({ data }) => {
-                setPoems(data)
-                data.forEach((poem) => {
+        if (searchTerm !== "") {
+            getPoem(searchTerm)
+            .then((poem) => {
+                console.log(poem)
+                setPoems(poem)
+                poem.forEach((poem) => {
                     poetsWords.push(poem.lines.join(' '))}
                 )
                 setWords(poetsWords.join(' '))
@@ -25,12 +25,16 @@ export default function SearchResults({ searchTerm }) {
                 console.log(error)
             })
         }
-
     }, [searchTerm])
 
     return <>
         {poems.map((poem, index) => {
-            return <Poem key={`${poem.title}${index}`} title={poem.title} author={poem.author} lineCount={poem.linecount} lines={poem.lines}/>
+            return <Poem 
+                key={`${poem.title}${index}`} 
+                title={poem.title} 
+                author={poem.author} 
+                lineCount={poem.linecount} 
+                lines={poem.lines} />
         })}
         {words.length > 0 ? <WordsChart words={words}/> : null}
     </>

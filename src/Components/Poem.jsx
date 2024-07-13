@@ -1,8 +1,6 @@
 import { Card } from "react-bootstrap";
-import { Placeholder } from "react-bootstrap";
 
 export default function Poem({ title, author, lineCount, lines }) {
-    
     return <Card>
         <Card.Body>
             <Card.Title>{title}</Card.Title>
