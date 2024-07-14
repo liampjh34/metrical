@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { useNavigate } from "react-router-dom"
 
 export default function SearchBar({ displayDirection }) {
 
     const [searchInput, setSearchInput] = useState('')
     const [searchTerm, setSearchTerm] = useState('')
+    const inputRef = useRef(null)
     const navigate = useNavigate()
 
     function handleChange(event) {
@@ -26,6 +27,7 @@ export default function SearchBar({ displayDirection }) {
 
    return  <form onSubmit={handleSubmit} className={displayDirection}>
         <input
+            type='text'
             aria-label="Search a poet" 
             value={searchInput}
             onChange={handleChange}
