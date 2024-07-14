@@ -40,20 +40,41 @@
   -webkit-text-fill-color: transparent;
 }
 
-form {
+form.vertical {
   display: block;
   width: 60vw;
 }
 
-form input {
+form.vertical input {
   width: 100%;
   padding: 1vh 0vw 1vh 1vw;
 }
 
-form button {
+form.vertical button {
   display: block;
   margin: 4vh auto;
   padding: 1vh 2vw;
+  border-radius: 25px;
+  border: 1px solid darkgrey;
+}
+
+form.horizontal {
+  display: flex;
+  width: 60vw;
+}
+
+form.horizontal input {
+  width: 100%;
+  height: 5vh;
+  padding: 0.5vh 0vw 0.5vh 1vw;
+  margin: 0vh 1vw 0vh 1vw;
+}
+
+form.horizontal button {
+  display: inline;
+  height: 5vh;
+  margin: 0vh auto;
+  padding: 0.5vh 2vw;
   border-radius: 25px;
   border: 1px solid darkgrey;
 }
@@ -77,6 +98,30 @@ form button {
 
 #demo-disclaimer p {
   margin: 0
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 1vw;
+  border: 1px solid red;
+}
+
+header h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: "DM Serif Display", "Playfair Display", Georgia, serif;
+  background: linear-gradient(311deg, rgba(172,83,126,1) 0%, rgba(172,85,83,1) 50%, rgba(80,121,175,1) 100%);
+  padding: 1vh 0vw;
+  margin: 0;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.poem-line {
+  list-style: none;
 }
 
 footer p {

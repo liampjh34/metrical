@@ -5,7 +5,7 @@ export default function getPoem(searchTerm) {
     return axios.get(path)
     .then(({ data }) => {
         return new Promise((resolve) => {
-            resolve(data)
+            resolve(data[0])
         })
     })
 }
