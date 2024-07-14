@@ -1,9 +1,11 @@
-import { useState } from "react"
-import { Form, Button } from "react-bootstrap"
+import { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 
-export default function SearchBar({searchTerm, setSearchTerm}) {
+export default function SearchBar({ displayDirection }) {
 
     const [searchInput, setSearchInput] = useState('')
+    const [searchTerm, setSearchTerm] = useState('')
+    const navigate = useNavigate()
 
     function handleChange(event) {
         setSearchInput(event.target.value)
@@ -15,8 +17,14 @@ export default function SearchBar({searchTerm, setSearchTerm}) {
         setSearchInput('')
     }
 
+    useEffect(() => {
+        if (searchTerm) {
+            navigate(`/search?poet=${searchTerm}`)
+        }
+    }, [searchTerm, navigate])
 
-   return  <form onSubmit={handleSubmit}>
+
+   return  <form onSubmit={handleSubmit} className={displayDirection}>
         <input
             aria-label="Search a poet" 
             value={searchInput}

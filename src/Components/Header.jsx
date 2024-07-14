@@ -1,3 +1,8 @@
+import SearchBar from "./SearchBar";
+
 export default function Header() {
-    return <h1>Metrical</h1>
+    return <header>
+        <h1>Metrical</h1>
+        <SearchBar displayDirection={'horizontal'}/>
+    </header>
 }
