@@ -1,4 +1,4 @@
-import nlp from "compromise";
+import getWords from "../../_utils_/getWords"
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -10,25 +10,14 @@ import {
   } from 'chart.js';
 import { Bar } from "react-chartjs-2";
 
-export default function WordsChart({ words }) {
-    const regex = /[^\w\s]/gm
+export default function WordsChart({ lines }) {
 
-    const wordsWithoutPunctuation = regex[Symbol.replace](words, "")
-    const original = nlp(wordsWithoutPunctuation)
-    
-    original.compute('root')
-    
-    const roots = original.json()[0].terms.map((word) => {
-        return word.root || word.normal
-    })
+  const roots = getWords(lines)
 
-    
-    const lineWithRoots = roots.join(' ')
-    
-    const wordCounts = roots.reduce((prev, nxt) => {
-        prev[nxt] = (prev[nxt] + 1) || 1;
-        return prev;
-    }, {})
+  const wordCounts = roots.reduce((prev, nxt) => {
+    prev[nxt] = (prev[nxt] + 1) || 1;
+    return prev;
+}, {})
 
     ChartJS.register(
         CategoryScale,
@@ -65,7 +54,9 @@ export default function WordsChart({ words }) {
 
     console.log(data)
 
-    return <Bar
-        options={options} data={data}
-    />
+    return <div id='chart'>
+      <Bar
+          options={options} data={data}
+      />
+    </div>
 }

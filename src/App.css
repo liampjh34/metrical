@@ -79,6 +79,17 @@ form.horizontal button {
   border: 1px solid darkgrey;
 }
 
+#results-view {
+  display: flex;
+  flex-direction: column;
+}
+
+#results-container {
+  display: flex;
+  flex-direction: row;
+  margin: 2vh 2vw 2vh 2vw;
+}
+
 #demo-disclaimer-container {
   flex: 1;
   display: flex;
@@ -120,7 +131,8 @@ header h1 {
 }
 
 #poem-container {
-  margin: 4vh 4vw 4vh 4vw;
+  margin: 2vh 2vw 2vh 2vw;
+  flex: 1;
 }
 
 #poem-container h1 {
@@ -140,6 +152,11 @@ header h1 {
 
 .poem-line {
   list-style: none;
+}
+
+#chart {
+  flex: 1;
+  padding: 0vh 2vw 0vh 2vw;
 }
 
 footer p {

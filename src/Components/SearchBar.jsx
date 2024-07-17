@@ -28,11 +28,11 @@ export default function SearchBar({ displayDirection }) {
    return  <form onSubmit={handleSubmit} className={displayDirection}>
         <input
             type='text'
-            aria-label="Search a poet" 
+            aria-label="Search for a classic poet" 
             value={searchInput}
             onChange={handleChange}
             id="searchInput"
-            placeholder="Poet's name"
+            placeholder="Search for a classic poet"
         ></input>
         <button 
             variant="primary" 
