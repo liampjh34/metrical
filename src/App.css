@@ -79,6 +79,17 @@ form.horizontal button {
   border: 1px solid darkgrey;
 }
 
+#results-view {
+  display: flex;
+  flex-direction: column;
+}
+
+#results-container {
+  display: flex;
+  flex-direction: row;
+  margin: 2vh 2vw 2vh 2vw;
+}
+
 #demo-disclaimer-container {
   flex: 1;
   display: flex;
@@ -105,11 +116,10 @@ header {
   justify-content: space-between;
   align-items: center;
   column-gap: 1vw;
-  border: 1px solid red;
 }
 
 header h1 {
-  font-size: 2rem;
+  font-size: 3rem;
   font-weight: bold;
   font-family: "DM Serif Display", "Playfair Display", Georgia, serif;
   background: linear-gradient(311deg, rgba(172,83,126,1) 0%, rgba(172,85,83,1) 50%, rgba(80,121,175,1) 100%);
@@ -120,8 +130,33 @@ header h1 {
   -webkit-text-fill-color: transparent;
 }
 
+#poem-container {
+  margin: 2vh 2vw 2vh 2vw;
+  flex: 1;
+}
+
+#poem-container h1 {
+  font-family: "DM Serif Display", "Playfair Display", Georgia, serif;
+  font-weight: bold;
+}
+
+#poem-container h2 {
+  font-family: "DM Serif Display", "Playfair Display", Georgia, serif;
+  font-weight: 400;
+  margin-bottom: 4vh;
+}
+
+#poem-container li {
+  margin: 1vh 0vw;
+}
+
 .poem-line {
   list-style: none;
+}
+
+#chart {
+  flex: 1;
+  padding: 0vh 2vw 0vh 2vw;
 }
 
 footer p {

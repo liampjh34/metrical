@@ -15,11 +15,13 @@
     "bootstrap": "^5.3.3",
     "chart.js": "^4.4.3",
     "compromise": "^14.13.0",
+    "natural": "^7.1.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.4",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.24.1"
+    "react-router-dom": "^6.24.1",
+    "stopword": "^3.0.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
