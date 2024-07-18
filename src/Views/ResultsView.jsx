@@ -1,22 +1,50 @@
-import { useSearchParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import Poem from "../Components/Poem";
 import Chart from "../Components/Chart";
 import Header from "../Components/Header";
-import { useEffect, useState } from "react";
 import getPoem from "../api/api";
 
 export default function ResultsView() {
-  let [searchParams, setSearchParams] = useSearchParams();
+  const location = useLocation();
   const [poemLoading, setPoemLoading] = useState(true);
   const [poem, setPoem] = useState(null);
-  console.log(poem, "poem");
+  const queryString = location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const poet = urlParams.get('poet');
+
+  const fetchPoem = () => {
+    console.log("Fetching poem for poet:", poet);
+    getPoem(poet)
+      .then(poemData => {
+        setPoem(poemData);
+        setPoemLoading(false);
+        console.log("Fetched poem:", poemData);
+      })
+      .catch(error => {
+        console.error("Error fetching poem:", error);
+        setPoemLoading(false); // Handle error state if needed
+      });
+  };
 
   useEffect(() => {
-    getPoem(searchParams.get("poet")).then((poem) => {
-      setPoem(poem);
+    console.log("ResultsView mounted");
+
+    if (poet) {
+      fetchPoem();
+    } else {
+      // Reset poem state if poet is null or empty
+      setPoem(null);
       setPoemLoading(false);
-    });
-  }, [searchParams.get("poet")]);
+    }
+
+    return () => {
+      console.log("ResultsView unmounted");
+      // Cleanup if necessary
+    };
+  }, [poet]);
+
+  console.log("ResultsView render", { poemLoading, poem, poet });
 
   if (poemLoading) {
     return (
@@ -37,7 +65,7 @@ export default function ResultsView() {
           lineCount={Number(poem.linecount)}
           lines={poem.lines}
         />
-        <Chart lines={poem.lines}/>
+        <Chart lines={poem.lines} />
       </div>
     </div>
   );
