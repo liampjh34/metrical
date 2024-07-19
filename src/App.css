@@ -191,7 +191,10 @@ form.horizontal button {
 
 /* Largest devices such as desktops (1280px and up) */
 @media only screen and (min-width: 1280px) {
-
+  #poem-container {
+    flex: 1;
+    margin: 0vw 3vw 0vh 3vw;
+  }
 }
 
 
