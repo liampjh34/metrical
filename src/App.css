@@ -17,6 +17,10 @@
   flex-direction: column;
 }
 
+a {
+  text-decoration: none !important;
+}
+
 #landing-container {
   width: 100%;
   flex: auto;
@@ -64,6 +68,20 @@ form.vertical button {
 
 #poem-container {
   margin: 2vh 2vw 2vh 2vw;
+}
+
+#chart {
+  display: flex;
+  padding: 0vh 2vw 0vh 2vw;
+  width: 100%;
+}
+
+#chart.short {
+  align-items: center;
+}
+
+#chart.long {
+  align-items: flex-start;
 }
 
 /* Default: Extra-small devices such as small phones (less than 640px) */
@@ -138,11 +156,9 @@ form.horizontal button {
 }
 
 #chart {
-  flex: 1;
-  padding: 0vh 2vw 0vh 2vw;
-  margin: auto;
-  height: 200px;
+   height: 400px;
 }
+
 
 /* Small devices such as large phones (640px and up) */
 @media only screen and (min-width: 640px) {
