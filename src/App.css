@@ -72,8 +72,9 @@ form.vertical button {
 
 #chart {
   display: flex;
-  padding: 0vh 2vw 0vh 2vw;
+  padding: auto;
   width: 100%;
+  height: 100%;
 }
 
 #chart.short {
@@ -133,6 +134,7 @@ form.horizontal button {
   font-family: "DM Serif Display", "Playfair Display", Georgia, serif;
   font-weight: bold;
   text-align: left;
+  width: 80%;
 }
 
 #poem-container h2 {
@@ -203,13 +205,29 @@ form.horizontal button {
     margin: 0vh 1vw 0vh 1vw;
   }
 
+
+  #poem-container {
+    flex: 1;
+    margin: 0;
+    width: 50%;
+  }
+
+  #chart {
+    flex: 1;
+  }
+
 }
 
 /* Largest devices such as desktops (1280px and up) */
 @media only screen and (min-width: 1280px) {
   #poem-container {
     flex: 1;
-    margin: 0vw 3vw 0vh 3vw;
+    width: 50%;
+    margin: 0vw 0vw 0vh 0vw;
+  }
+
+  #chart {
+    flex: 1;
   }
 }
 

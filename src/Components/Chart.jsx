@@ -46,6 +46,11 @@ export default function WordsChart({ lines, poemLength }) {
         text: "Chart.js Bar Chart",
       },
     },
+    scale: {
+      ticks: {
+        precision: 0
+      }
+    }
   };
 
   const labels = Object.keys(top25WordCountsObject);
@@ -55,7 +60,7 @@ export default function WordsChart({ lines, poemLength }) {
     datasets: [
       {
         id: 1,
-        label: "word roots",
+        label: "Word Roots",
         data: labels.map((label) => top25WordCountsObject[label]),
         backgroundColor: "rgba(255, 99, 132, 0.5)",
       },
