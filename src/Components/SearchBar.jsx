@@ -25,11 +25,11 @@ export default function SearchBar({ displayDirection }) {
     <form onSubmit={handleSubmit} className={displayDirection}>
       <input
         type="text"
-        aria-label="Search for a classic poet"
+        aria-label="Search for a poet"
         value={searchInput}
         onChange={handleChange}
         id="searchInput"
-        placeholder="Search for a classic poet"
+        placeholder="Search for a poet"
         autoComplete="off"
       />
       <button variant="primary" size="lg" type="submit">

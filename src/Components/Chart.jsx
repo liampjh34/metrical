@@ -1,62 +1,75 @@
-import getWords from "../../_utils_/getWords"
+import getWords from "../../_utils_/getWords";
 import {
-    Chart as ChartJS,
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import { Bar } from "react-chartjs-2";
+
+export default function WordsChart({ lines, poemLength }) {
+  const roots = getWords(lines);
+
+  let wordCounts = {}
+
+  roots.forEach((word) => {
+    if (wordCounts[word]) {
+      wordCounts[word] ++
+    } else {
+      wordCounts[word] = 1
+    }
+  })
+
+  const wordCountsArray = Object.entries(wordCounts);
+  const sortedWordCountsArray = wordCountsArray.sort((a, b) => b[1] - a[1]);
+  const top25WordCountsArray = sortedWordCountsArray.slice(0, 25);
+  const top25WordCountsObject = Object.fromEntries(top25WordCountsArray);
+
+  ChartJS.register(
     CategoryScale,
     LinearScale,
     BarElement,
     Title,
     Tooltip,
-    Legend,
-  } from 'chart.js';
-import { Bar } from "react-chartjs-2";
+    Legend
+  );
 
-export default function WordsChart({ lines }) {
-
-  const roots = getWords(lines)
-
-  const wordCounts = roots.reduce((prev, nxt) => {
-    prev[nxt] = (prev[nxt] + 1) || 1;
-    return prev;
-}, {})
-
-    ChartJS.register(
-        CategoryScale,
-        LinearScale,
-        BarElement,
-        Title,
-        Tooltip,
-        Legend
-    )
-
-    const options = {
-        responsive: true,
-        plugins: {
-          title: {
-            display: true,
-            text: 'Chart.js Bar Chart',
-          }
-        },
-      };
-      
-      const labels = Object.keys(wordCounts)
-
-      const data = {
-        labels,
-        datasets: [
-            {
-                id: 1,
-                label: 'word roots',
-                data: labels.map((label) => wordCounts[label]),
-                backgroundColor: 'rgba(255, 99, 132, 0.5)'
-              }
-        ]
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      title: {
+        display: true,
+        text: "Chart.js Bar Chart",
+      },
+    },
+    scale: {
+      ticks: {
+        precision: 0
       }
+    }
+  };
 
-    console.log(data)
+  const labels = Object.keys(top25WordCountsObject);
 
-    return <div id='chart'>
-      <Bar
-          options={options} data={data}
-      />
+  const data = {
+    labels,
+    datasets: [
+      {
+        id: 1,
+        label: "Word Roots",
+        data: labels.map((label) => top25WordCountsObject[label]),
+        backgroundColor: "rgba(255, 99, 132, 0.5)",
+      },
+    ],
+  };
+
+  return (
+    <div id="chart" className={poemLength}>
+      <Bar options={options} data={data} />
     </div>
+  );
 }

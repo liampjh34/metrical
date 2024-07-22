@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import Poem from "../Components/Poem";
 import Chart from "../Components/Chart";
@@ -12,6 +12,8 @@ export default function ResultsView() {
   const queryString = location.search;
   const urlParams = new URLSearchParams(queryString);
   const poet = urlParams.get('poet');
+  const [poemLength, setPoemLength] = useState(null)
+  const resultsContainerRef = useRef(null);
 
   const fetchPoem = () => {
     console.log("Fetching poem for poet:", poet);
@@ -44,6 +46,20 @@ export default function ResultsView() {
     };
   }, [poet]);
 
+  useEffect(() => {
+
+    console.log(poem)
+    
+    if (poem) {
+      const resultsHeight = resultsContainerRef.current.offsetHeight;
+      const viewportHeight = window.innerHeight;
+
+      setPoemLength(resultsHeight < viewportHeight ? 'short' : 'long')
+
+    }
+
+  }, [poem])
+
   console.log("ResultsView render", { poemLoading, poem, poet });
 
   if (poemLoading) {
@@ -58,14 +74,14 @@ export default function ResultsView() {
   return (
     <div id="results-view">
       <Header />
-      <div id="results-container">
+      <div id="results-container" ref={resultsContainerRef}>
         <Poem
           title={poem.title}
           author={poem.author}
           lineCount={Number(poem.linecount)}
           lines={poem.lines}
         />
-        <Chart lines={poem.lines} />
+        <Chart lines={poem.lines} poemLength={poemLength}/>
       </div>
     </div>
   );
